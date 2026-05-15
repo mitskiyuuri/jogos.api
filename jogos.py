@@ -8,13 +8,16 @@ jogos = [
     {"id": 3, "nome": "stardew valley"},
 ]
 
-@app.route("/jogos", methods=["GET"])
-def home():
-    return jsonify({"mensagem": "API de Jogos - Acesse /jogos"})
-
-@app.route("/", methods=["GET"])
-def listar_jogos():
+@app.route('/usuarios', methods=['GET'])
+def listar_usuarios():
     return jsonify(jogos)
 
-if __name__ == "__main__":
-    app.run(port=5001)
+@app.route('/usuarios', methods=['POST'])
+def criar_usuario():
+    novo = request.json
+    novo['id'] = len(jogos) + 1
+    jogos.append(novo)
+    return jsonify(novo), 201
+
+if __name__ == '__main__':
+    app.run(debug=True)
