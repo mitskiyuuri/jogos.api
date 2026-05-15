@@ -8,11 +8,11 @@ jogos = [
     {"id": 3, "nome": "stardew valley"},
 ]
 
-@app.route('/usuarios', methods=['GET'])
-def listar_usuarios():
+@app.route('/jogos', methods=['GET'])
+def listar_jogos():
     return jsonify(jogos)
 
-@app.route('/usuarios', methods=['POST'])
+@app.route('/jogos', methods=['POST'])
 def criar_usuario():
     novo = request.json
     novo['id'] = len(jogos) + 1
